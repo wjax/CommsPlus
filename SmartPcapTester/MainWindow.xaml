@@ -1,0 +1,55 @@
+﻿<Window x:Class="SmartPcapTester.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmartPcapTester"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="200" Height="200"
+        MinWidth="300">
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <RadioButton Content="REC" x:Name="CB_Rec" Margin="5" IsChecked="{Binding ModeRec}"/>
+                <RadioButton Content="PLAY" x:Name="CB_Play" Margin="5" IsChecked="{Binding ModePlay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBox Text="{Binding FilePath}" x:Name="T_FilePath" Margin="5" MinWidth="200" HorizontalAlignment="Center"/>
+                <Button Content="Select" HorizontalAlignment="Center" Click="Button_Click" IsEnabled="{Binding ElementName=CB_Play, Path=IsChecked}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="START" Margin="5" Click="ButtonStart"/>
+                <Button x:Name="B_Pause" Content="PAUSE" Margin="5" Click="ButtonPause" IsEnabled="{Binding ElementName=CB_Play, Path=IsChecked}"/>
+                <Button Content="STOP" Margin="5" Click="ButtonStop"/>
+                <Separator Margin="5" BorderBrush="Black" BorderThickness="2"/>
+                <Button Content="LoadFile" Margin="5" Click="ButtonRefresh" IsEnabled="{Binding ElementName=CB_Play, Path=IsChecked}"/>
+            </StackPanel>
+            <Border BorderThickness="1" BorderBrush="Black"/>
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Vertical" IsEnabled="{Binding ModeRec}">
+                    <TextBlock Text="RECZone" HorizontalAlignment="Center"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="5">
+                        <Run Text="{Binding RecStatus}"/>
+                        <Run Text=" - Mb: "/>
+                        <Run Text="{Binding RecMb, StringFormat=N2}"/>
+                    </TextBlock>
+                </StackPanel>
+                <Border BorderThickness="0,0,1,0" BorderBrush="Black" VerticalAlignment="Stretch"/>
+                <StackPanel Grid.Column="1" Orientation="Vertical" IsEnabled="{Binding ModePlay}">
+                    <TextBlock Text="PlayZone" HorizontalAlignment="Center"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="5">
+                        <Run Text="{Binding PlayerStatus}"/>
+                        <Run Text=" - Pos: "/>
+                        <Run Text="{Binding Position}"/>
+                    </TextBlock>
+                    <Slider x:Name="S_Position" Minimum="0" Maximum="{Binding Maximum}" Value="{Binding Position, Mode=OneWay}" Margin="5" MouseDown="Slider_MouseDown" MouseUp="S_Position_MouseUp" PreviewMouseLeftButtonDown="S_Position_PreviewMouseLeftButtonDown" ValueChanged="S_Position_ValueChanged" PreviewMouseLeftButtonUp="S_Position_PreviewMouseLeftButtonUp" />
+                </StackPanel>
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+</Window>

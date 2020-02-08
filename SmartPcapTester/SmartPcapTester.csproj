@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <StartupObject>SmartPcapTester.App</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CommsLIBPlus\CommsLIBPlus.csproj" />
+  </ItemGroup>
+  
+
+  <ItemGroup>
+    <Reference Include="Tools">
+      <HintPath>..\..\..\..\BIN\UTILS\Tools\1.1.0\Tools.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+
+</Project>

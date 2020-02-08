@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommsLIBPlus", "CommsLIBPlus\CommsLIBPlus.csproj", "{3E659609-D8AA-4989-B701-AD349D02F762}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProtobufTester", "ProtobufTester", "{DEAEAAA9-D3DE-4925-BE83-3EC43051F2D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SmartPcapTester", "SmartPcapTester", "{9A6839FE-77D7-4C36-806C-2A56F8AEC9DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartPcapTester", "SmartPcapTester\SmartPcapTester.csproj", "{3C71897D-BDDC-4C19-BC01-7695CB9E6384}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtobufServer", "ProtoBufTester\ProtobufServer\ProtobufServer.csproj", "{64059EEF-49EE-48A9-A3E0-85F807A10E5D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtobufClient", "ProtoBufTester\ProtobufClient\ProtobufClient.csproj", "{CF4D99F8-E2B5-4CBC-8F88-286CC535B510}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModel", "ProtoBufTester\DataModel\DataModel.csproj", "{EB769C60-10E2-4C3C-9D70-55AEAFBB512A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E659609-D8AA-4989-B701-AD349D02F762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E659609-D8AA-4989-B701-AD349D02F762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E659609-D8AA-4989-B701-AD349D02F762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E659609-D8AA-4989-B701-AD349D02F762}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C71897D-BDDC-4C19-BC01-7695CB9E6384}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C71897D-BDDC-4C19-BC01-7695CB9E6384}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C71897D-BDDC-4C19-BC01-7695CB9E6384}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C71897D-BDDC-4C19-BC01-7695CB9E6384}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64059EEF-49EE-48A9-A3E0-85F807A10E5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64059EEF-49EE-48A9-A3E0-85F807A10E5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64059EEF-49EE-48A9-A3E0-85F807A10E5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64059EEF-49EE-48A9-A3E0-85F807A10E5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF4D99F8-E2B5-4CBC-8F88-286CC535B510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF4D99F8-E2B5-4CBC-8F88-286CC535B510}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF4D99F8-E2B5-4CBC-8F88-286CC535B510}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF4D99F8-E2B5-4CBC-8F88-286CC535B510}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB769C60-10E2-4C3C-9D70-55AEAFBB512A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB769C60-10E2-4C3C-9D70-55AEAFBB512A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB769C60-10E2-4C3C-9D70-55AEAFBB512A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB769C60-10E2-4C3C-9D70-55AEAFBB512A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3C71897D-BDDC-4C19-BC01-7695CB9E6384} = {9A6839FE-77D7-4C36-806C-2A56F8AEC9DE}
+		{64059EEF-49EE-48A9-A3E0-85F807A10E5D} = {DEAEAAA9-D3DE-4925-BE83-3EC43051F2D8}
+		{CF4D99F8-E2B5-4CBC-8F88-286CC535B510} = {DEAEAAA9-D3DE-4925-BE83-3EC43051F2D8}
+		{EB769C60-10E2-4C3C-9D70-55AEAFBB512A} = {DEAEAAA9-D3DE-4925-BE83-3EC43051F2D8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3EF52D06-4CE2-4607-89B8-B689889589A3}
+	EndGlobalSection
+EndGlobal
