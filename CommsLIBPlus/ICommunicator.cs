@@ -12,7 +12,7 @@ namespace CommsLIBPlus
     public delegate void ConnectionStateDelegate(string ID, ConnUri uri, bool connected);
     public delegate void DataRateDelegate(string ID, float MbpsRX, float MbpsTX);
 
-    public interface ICommunicator
+    public interface ICommunicator : IDisposable
     {
         event DataRateDelegate DataRateEvent;
         event ConnectionStateDelegate ConnectionStateEvent;

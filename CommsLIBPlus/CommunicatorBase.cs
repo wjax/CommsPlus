@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CommsLIBPlus.Communications
 {
-    public abstract class CommunicatorBase<T> : IDisposable, ICommunicator
+    public abstract class CommunicatorBase<T> : ICommunicator
     {
         #region logger
         private NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
