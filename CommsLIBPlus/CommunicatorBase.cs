@@ -2,6 +2,7 @@
 using CommsLIBPlus.Base;
 using CommsLIBPlus.Communications;
 using CommsLIBPlus.Communications.FrameWrappers;
+using CommsLIBPlus.FrameWrappers;
 using CommsLIBPlus.Memory;
 using System;
 using System.Buffers;
@@ -42,6 +43,7 @@ namespace CommsLIBPlus.Communications
         public abstract Task Stop();
         public abstract ValueTask<int> SendAsync(ReadOnlyMemory<byte> memory);
         public abstract ValueTask<int> SendAsync(T message);
+        public abstract Task<T> SendReceiveAsync(T message);
         public abstract FrameWrapperBase<T> FrameWrapper { get; }
 
         public CommunicatorBase()

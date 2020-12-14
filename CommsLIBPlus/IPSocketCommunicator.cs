@@ -1,5 +1,6 @@
 ﻿using CommsLIBPlus.Base;
 using CommsLIBPlus.Communications.FrameWrappers;
+using CommsLIBPlus.FrameWrappers;
 using CommsLIBPlus.SmartPcap;
 using Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.Internal;
 using System;
@@ -22,6 +23,15 @@ namespace CommsLIBPlus.Communications
         #region global defines
         private int RECEIVE_TIMEOUT = 4000;
         private const int SEND_TIMEOUT = 100; // Needed on linux as socket will not throw exception when send buffer full, instead blocks "forever"
+
+        /// <summary>
+        /// Winsock ioctl code which will disable ICMP errors from being propagated to a UDP socket.
+        /// This can occur if a UDP packet is sent to a valid destination but there is no socket
+        /// registered to listen on the given port.
+        /// </summary>
+
+        private const int SIO_UDP_CONNRESET = -1744830452;
+        private byte[] byteTrue = { 0x00, 0x00, 0x00, 0x01 };
         #endregion
 
         #region fields
@@ -53,7 +63,7 @@ namespace CommsLIBPlus.Communications
             frameWrapper = _frameWrapper;
             clientProvided = false;
 
-            State = CommunicatorBase<T>.STATE.STOP;
+            State = STATE.STOP;
         }
 
         public IPSocketCommunicator(Socket client, FrameWrapperBase<T> _frameWrapper = null) : base()
@@ -117,6 +127,21 @@ namespace CommsLIBPlus.Communications
         {
             ReadOnlyMemory<byte> data = frameWrapper.Data2Bytes(Message);
             return await SendAsync(data);
+        }
+
+        public override async Task<T> SendReceiveAsync(T message)
+        {
+            if (message is Identifiable messageID)
+            {
+                var tcs = new TaskCompletionSource<T>();
+
+                var data = frameWrapper.Data2Bytes(message);
+                await SendAsync(data);
+                return await frameWrapper.WaitForResponse(messageID.ID, tcs);
+            }
+            else
+                throw new ArgumentException();
+
         }
 
         public override void Start()
@@ -208,6 +233,8 @@ namespace CommsLIBPlus.Communications
                             socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
                             socket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.MulticastTimeToLive, 128);
                             socket.Bind(string.IsNullOrEmpty(CommsUri.BindIP) ? new IPEndPoint(IPAddress.Any, CommsUri.LocalPort) : new IPEndPoint(IPAddress.Parse(CommsUri.BindIP), CommsUri.LocalPort));
+
+                            socket.IOControl(SIO_UDP_CONNRESET, byteTrue, null);
                         }
                         if (IsMulticast(CommsUri.IP, out IPAddress adr))
                             JoinMulticastOnSteroids(socket, CommsUri.IP);

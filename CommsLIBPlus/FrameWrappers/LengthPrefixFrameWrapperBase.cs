@@ -76,6 +76,11 @@ namespace CommsLIBPlus.Communications.FrameWrappers
             started = false;
         }
 
+        public override async Task<T> WaitForResponse(uint ResponseID, TaskCompletionSource<T> tcs)
+        {
+            throw new NotImplementedException();
+        }
+
         private async ValueTask TaskReaderWorker()
         {
             while (!cancellationToken.IsCancellationRequested && pipeReader != null)

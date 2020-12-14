@@ -37,6 +37,8 @@ namespace CommsLIBPlus.Communications.FrameWrappers
 
         public abstract Task Stop();
 
+        public abstract Task<T> WaitForResponse(uint ResponseID, TaskCompletionSource<T> tcs);
+
         public async ValueTask FireEvent(T toFire)
         {
             if (useThreadPool4Event)
@@ -48,7 +50,7 @@ namespace CommsLIBPlus.Communications.FrameWrappers
             {
                 try
                 {
-                    FrameAvailableEvent?.Invoke(ID, toFire);
+                    DoFireEvent(ID, toFire);
                 }
                 catch (Exception e)
                 { }
@@ -67,10 +69,15 @@ namespace CommsLIBPlus.Communications.FrameWrappers
                 toFire = await fireChannel.Reader.ReadAsync(cancellationToken);//fireQueue.Take();
                 try
                 {
-                    FrameAvailableEvent?.Invoke(ID, toFire);
+                    DoFireEvent(ID, toFire);
                 }
                 catch (Exception) { }
             }
+        }
+
+        public virtual void DoFireEvent(string ID, T message)
+        {
+            FrameAvailableEvent?.Invoke(ID, message);
         }
 
         public abstract ReadOnlyMemory<byte> Data2Bytes(T data);
