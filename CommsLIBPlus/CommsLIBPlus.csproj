@@ -7,7 +7,7 @@
     <Authors />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MessagePack" Version="2.1.80" />
+    <PackageReference Include="MessagePack" Version="2.1.90" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions" Version="2.2.0" />
     <PackageReference Include="NLog" Version="4.6.8" />
     <PackageReference Include="PooledAwait" Version="1.0.49" />
